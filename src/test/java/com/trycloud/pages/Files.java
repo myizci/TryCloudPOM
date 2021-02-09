@@ -1,10 +1,15 @@
 package com.trycloud.pages;
 
+import com.trycloud.utilities.BrowserUtils;
 import com.trycloud.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,9 +19,82 @@ public class Files {
     public Files() {
         PageFactory.initElements(Driver.getDriver(), this);
 
+
     }
 
-List<WebElement> modules = new ArrayList<>(Arrays.asList());
+    public void uploadfile(String path) {
+        Files files = new Files();
+        files.plusButton.click();
+        files.addFileButton.click();
+        BrowserUtils.sleep(1);
+        File file = new File(path);
+
+        StringSelection stringSelection = new StringSelection(file.getAbsolutePath());
+
+//Copy to clipboard
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+
+        Robot robot = null;
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
+
+// Cmd + Tab is needed since it launches a Java app and the browser looses focus
+
+        robot.keyPress(KeyEvent.VK_META);
+
+        robot.keyPress(KeyEvent.VK_TAB);
+
+        robot.keyRelease(KeyEvent.VK_META);
+
+        robot.keyRelease(KeyEvent.VK_TAB);
+
+        robot.delay(1000);
+
+//Open Goto window
+
+        robot.keyPress(KeyEvent.VK_META);
+
+        robot.keyPress(KeyEvent.VK_SHIFT);
+
+        robot.keyPress(KeyEvent.VK_G);
+
+        robot.keyRelease(KeyEvent.VK_META);
+
+        robot.keyRelease(KeyEvent.VK_SHIFT);
+
+        robot.keyRelease(KeyEvent.VK_G);
+
+//Paste the clipboard value
+
+        robot.keyPress(KeyEvent.VK_META);
+
+        robot.keyPress(KeyEvent.VK_V);
+
+        robot.keyRelease(KeyEvent.VK_META);
+
+        robot.keyRelease(KeyEvent.VK_V);
+
+//Press Enter key to close the Goto window and Upload window
+
+        robot.keyPress(KeyEvent.VK_ENTER);
+
+        robot.keyRelease(KeyEvent.VK_ENTER);
+
+        robot.delay(1000);
+
+        robot.keyPress(KeyEvent.VK_ENTER);
+
+        robot.keyRelease(KeyEvent.VK_ENTER);
+
+        robot.delay(1000);
+
+
+    }
+
+    List<WebElement> modules = new ArrayList<>(Arrays.asList());
 
     @FindBy(xpath = "(//a[@href='/index.php/apps/files/'])[1]")
     public WebElement files;
@@ -48,6 +126,13 @@ List<WebElement> modules = new ArrayList<>(Arrays.asList());
     @FindBy(xpath = "(//a[@href='/index.php/apps/deck/'])[1]")
     public WebElement deck;
 
+
+    @FindBy(xpath = "//input[@class='selectCheckBox checkbox']")
+    public List<WebElement> checkedFilesAndFolders;
+
+    @FindBy(xpath = "//label[@for='select_all_files']")
+    public WebElement checkAllcheckbox;
+
     @FindBy(xpath = "//*[@id='controls']/div[2]/a")
     public WebElement plusButton;
 
@@ -64,35 +149,45 @@ List<WebElement> modules = new ArrayList<>(Arrays.asList());
     public WebElement newFolderInput;
 
     @FindBy(xpath = "//span[@class='innernametext']")
-    public WebElement folderList;
+    public List<WebElement> filesAndFoldersList;
 
     @FindBy(xpath = "//input[@id='view13-input-folder']")
     public WebElement newFolderName;
 
     public static final String expectedDashboardTitle = "Dashboard - Trycloud QA";
     public static final String expectedFilesTitle = "Files - Trycloud QA";
-    public  static final String expectedPhotosTitle = "Photos - Trycloud QA";
+    public static final String expectedPhotosTitle = "Photos - Trycloud QA";
     public static final String expectedActivityTitle = "Activity - Trycloud QA";
     public static final String expectedCirclesTitle = "Circles - Trycloud QA";
     public static final String expectedTalkTitle = "Talk - Trycloud QA";
     public static final String expectedContactsTitle = "Contacts - Trycloud QA";
 
-    public static final  String expectedCalendarTitle = " - Calendar - Trycloud QA";
+    public static final String expectedCalendarTitle = " - Calendar - Trycloud QA";
 
     public static final String expectedDeckTitle = "Deck - Trycloud QA";
     public static final String expectedMailTitle = "Mail - Trycloud QA";
 
 
-   // public static final String mainPageFilesAndFolders = "//span[@class='innernametext']";
+    // public static final String mainPageFilesAndFolders = "//span[@class='innernametext']";
 
 
     //US3-tc3,4
+    @FindBy(xpath = "//a[@class='action action-menu permanent']")
+    public List<WebElement> actionButtonsList;
+    @FindBy(xpath = "//span[.='Add to favorites']")
+    public WebElement addToFavorite;
+    @FindBy(xpath = "//a[.='Favorites']")
+    public WebElement favorites;
+    @FindBy(xpath ="//span[@class='icon icon-starred']")
+    public List<WebElement> favoriteList;
+    @FindBy(xpath = "//tr[contains(@data-file,'XPath+Cheat+Sheet')]")
+    public WebElement favoriteFileName;
 
-    public String actionIcon2Xpath = "(//span[@class='icon icon-more'])[2]";
-    public String actionIcon1Xpath = "(//a[@class='action action-menu permanent'])[1]";
-    public String addToFavoriteXpath = "//a[@class='menuitem action action-favorite permanent']";
+    //public String actionIcon2Xpath = "(//span[@class='icon icon-more'])[2]";
+    //public String actionIcon1Xpath = "(//a[@class='action action-menu permanent'])[1]";
+    //public String addToFavoriteXpath = "//span[.='Add to favorites']";
     public String removeFromFavoriteXpath = "//span[.='Remove from favorites']";
-    public String favoriteSubModuleXpath = "Favorites";
+    //public String favoriteSubModuleXpath = "Favorites";
     public String fileAddedToFavoriteXpath = "(//tbody)[3]/tr";
     public String RemoveFromFavoriteXpath = "//span[.='Remove from favorites']";
 
@@ -103,8 +198,6 @@ List<WebElement> modules = new ArrayList<>(Arrays.asList());
     public String inputSearchFormCssSelector = "input.unified-search__form-input";
     // found search items list:
     public String foundSearchItemsListCssSelector = "div.header-menu__content";
-
-
 
 
     //US3_7
