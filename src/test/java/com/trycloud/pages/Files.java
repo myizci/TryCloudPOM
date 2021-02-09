@@ -5,12 +5,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Files {
 
     public Files() {
         PageFactory.initElements(Driver.getDriver(), this);
 
     }
+
+List<WebElement> modules = new ArrayList<>(Arrays.asList());
 
     @FindBy(xpath = "(//a[@href='/index.php/apps/files/'])[1]")
     public WebElement files;
@@ -24,6 +30,9 @@ public class Files {
     @FindBy(xpath = "(//a[@href='http://qa.trycloud.net/index.php/apps/spreed/'])[1]")
     public WebElement talk;
 
+    @FindBy(xpath = "(//a[@href='/index.php/apps/mail/'])[1]")
+    public WebElement mail;
+
     @FindBy(xpath = "(//li[@data-id='circles'])/a")
     public WebElement circles;
 
@@ -33,8 +42,8 @@ public class Files {
     @FindBy(xpath = "(//a[@href='/index.php/apps/calendar/'])[1]")
     public WebElement calendar;
 
-    @FindBy(xpath = "(//div[@class='datepicker-button-section']//button[2]")
-    public WebElement calendatDatePickButton;
+    @FindBy(xpath = "//div[@class='datepicker-button-section']//button[2]")
+    public WebElement calendarDatePickButton;
 
     @FindBy(xpath = "(//a[@href='/index.php/apps/deck/'])[1]")
     public WebElement deck;
@@ -64,11 +73,16 @@ public class Files {
     public static final String expectedFilesTitle = "Files - Trycloud QA";
     public  static final String expectedPhotosTitle = "Photos - Trycloud QA";
     public static final String expectedActivityTitle = "Activity - Trycloud QA";
-    public static final String expectedCirclesTitle = "Circle - Trycloud QA";
+    public static final String expectedCirclesTitle = "Circles - Trycloud QA";
     public static final String expectedTalkTitle = "Talk - Trycloud QA";
     public static final String expectedContactsTitle = "Contacts - Trycloud QA";
-    public static final String expectedCalendarTitle = " - Calendar - Trycloud QA";
+
+    public static final  String expectedCalendarTitle = " - Calendar - Trycloud QA";
+
     public static final String expectedDeckTitle = "Deck - Trycloud QA";
+    public static final String expectedMailTitle = "Mail - Trycloud QA";
+
+
    // public static final String mainPageFilesAndFolders = "//span[@class='innernametext']";
 
 
