@@ -1,9 +1,11 @@
 package com.trycloud.tests;
 
+import com.github.javafaker.Faker;
 import com.trycloud.pages.FilesPage;
 import com.trycloud.tests.base.TestBase;
 import com.trycloud.utilities.BrowserUtils;
 import com.trycloud.utilities.Driver;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -50,7 +52,7 @@ public class US3 extends TestBase {
             }
         }
 
-        Assert.assertTrue(flag);
+        Assert.assertTrue(flag);//TC5 is asserted________________________
 
         // using the index, clicking on action button
         for (int i = 0; i < files.actionButtonsList.size(); i++) {
@@ -86,7 +88,7 @@ public class US3 extends TestBase {
         Driver.getDriver().navigate().refresh();
         BrowserUtils.sleep(1);
         boolean flag = false;
-        for (WebElement each: files.favoriteList) {
+        for (WebElement each : files.favoriteList) {
             System.out.println(each.getText());
             if (each.getText().contains("XPath+Cheat+Sheet")) {
 
@@ -97,5 +99,29 @@ public class US3 extends TestBase {
 
         Assert.assertFalse(flag);
 
+    }
+
+    @Test
+    public void US3_TC6() {
+
+        FilesPage filesPage = new FilesPage();
+        filesPage.files.click();
+        filesPage.plusButton.click();
+        filesPage.newFolder.click();
+        Faker faker = new Faker();
+        String name = faker.name().firstName();
+        filesPage.newFolderName.sendKeys(name + Keys.ENTER);
+        BrowserUtils.sleep(1);
+        Driver.getDriver().navigate().refresh();
+        BrowserUtils.sleep(1);
+        boolean flag=false;
+        for(WebElement each: filesPage.filesAndFoldersList){
+            if(each.getText().equals(name)){
+                flag=true;
+            }
+
+        }
+
+        Assert.assertTrue(flag);
     }
 }

@@ -145,17 +145,10 @@ public class FilesPage {
     @FindBy(xpath = "//span[contains(.,'New folder')]")
     public WebElement newFolder;
 
-    @FindBy(xpath = "//input[@id='view13-input-folder']")
-    public WebElement newFolderInput;
-
     @FindBy(xpath = "//span[@class='innernametext']")
     public List<WebElement> filesAndFoldersList;
 
-    @FindBy(xpath = "//*[@id='fileList']/tr")
-    public List<WebElement> filesAndFoldersList2;
-
-
-    @FindBy(xpath = "//input[@id='view13-input-folder']")
+    @FindBy(xpath = "//input[contains(@id,'input-folder')]")
     public WebElement newFolderName;
 
     public static final String expectedDashboardTitle = "Dashboard - Trycloud QA";
@@ -165,9 +158,7 @@ public class FilesPage {
     public static final String expectedCirclesTitle = "Circles - Trycloud QA";
     public static final String expectedTalkTitle = "Talk - Trycloud QA";
     public static final String expectedContactsTitle = "Contacts - Trycloud QA";
-
     public static final String expectedCalendarTitle = " - Calendar - Trycloud QA";
-
     public static final String expectedDeckTitle = "Deck - Trycloud QA";
     public static final String expectedMailTitle = "Mail - Trycloud QA";
 
@@ -176,31 +167,30 @@ public class FilesPage {
 
 
     //US3-tc3,4
+
     @FindBy(xpath = "//a[@class='action action-menu permanent']")
     public List<WebElement> actionButtonsList;
+
     @FindBy(xpath = "//span[.='Add to favorites']")
     public WebElement addToFavorite;
+
     @FindBy(xpath = "//a[.='Favorites']")
     public WebElement favorites;
+
     @FindBy(xpath ="//td[@class='filename']/a/span/span[1]")
     public List<WebElement> favoriteList;
+
     @FindBy(xpath = "(//tr[contains(@data-file,'XPath+Cheat+Sheet')])[2]")
     public WebElement favoriteFileName;
     // change the name of this file according to you file
+
     @FindBy(xpath = "(//tr[contains(@data-file,'XPath+Cheat+Sheet')])[2]/td/a/span[2]/a[2]")
     public WebElement favoriteFileMore;
-
 
     @FindBy(xpath = "//span[.='Remove from favorites']")
     public WebElement removeFromFavorites;
 
-    //public String actionIcon2Xpath = "(//span[@class='icon icon-more'])[2]";
-    //public String actionIcon1Xpath = "(//a[@class='action action-menu permanent'])[1]";
-    //public String addToFavoriteXpath = "//span[.='Add to favorites']";
-   // public String removeFromFavoriteXpath = "//span[.='Remove from favorites']";
-    //public String favoriteSubModuleXpath = "Favorites";
-   // public String fileAddedToFavoriteXpath = "(//tbody)[3]/tr";
-  //  public String RemoveFromFavoriteXpath = "//span[.='Remove from favorites']";
+
 
     // US7
     // magnifierIcon
