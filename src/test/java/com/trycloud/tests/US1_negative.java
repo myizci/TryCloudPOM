@@ -1,6 +1,6 @@
 package com.trycloud.tests;
 
-import com.trycloud.pages.Login;
+import com.trycloud.pages.LoginPage;
 import com.trycloud.utilities.ConfigurationReader;
 import com.trycloud.utilities.Driver;
 import org.testng.Assert;
@@ -10,7 +10,7 @@ public class US1_negative {
     @Test
     public void US1_TC2_negative_login(){
 
-        Login login = new Login();
+        LoginPage login = new LoginPage();
 
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
         String username = ConfigurationReader.getProperty("wrongUser");

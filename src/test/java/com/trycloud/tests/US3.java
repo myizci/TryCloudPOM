@@ -1,6 +1,6 @@
 package com.trycloud.tests;
 
-import com.trycloud.pages.Files;
+import com.trycloud.pages.FilesPage;
 import com.trycloud.tests.base.TestBase;
 import com.trycloud.utilities.BrowserUtils;
 import com.trycloud.utilities.Driver;
@@ -15,7 +15,7 @@ public class US3 extends TestBase {
 
     @Test
     public void US3_TC2() {
-        Files files = new Files();
+        FilesPage files = new FilesPage();
 
         files.files.click();
         files.checkAllcheckbox.click();
@@ -28,8 +28,8 @@ public class US3 extends TestBase {
 
 
     @Test
-    public void Us3_TC5_TC3_TC4() {
-        Files files = new Files();
+    public void Us3_TC5_TC3() {
+        FilesPage files = new FilesPage();
         files.files.click();
 // Make sure your file's path is entered below, also make sure it is not uploaded already
         String path = "/Users/guestaccount/Desktop/XPath+Cheat+Sheet.pdf";
@@ -67,6 +67,35 @@ public class US3 extends TestBase {
         Assert.assertTrue(files.favoriteFileName.isDisplayed()); //TC3 is asserted___________________
 
 
+    }
+
+
+    @Test
+    public void US3_TC4() {
+
+        // This test  depends on the previous test
+        // The XPath+Cheat+Sheet.pdf should be loaded.
+        // The same file will be removed
+        FilesPage files = new FilesPage();
+        files.files.click();
+        files.favorites.click(); // moving to favorites page
+
+        files.favoriteFileMore.click();
+        files.removeFromFavorites.click();
+        BrowserUtils.sleep(1);
+        Driver.getDriver().navigate().refresh();
+        BrowserUtils.sleep(1);
+        boolean flag = false;
+        for (WebElement each: files.favoriteList) {
+            System.out.println(each.getText());
+            if (each.getText().contains("XPath+Cheat+Sheet")) {
+
+                flag = true;
+                break;
+            }
+        }
+
+        Assert.assertFalse(flag);
 
     }
 }

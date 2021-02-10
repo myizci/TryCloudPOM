@@ -1,6 +1,6 @@
 package com.trycloud.tests.base;
 
-import com.trycloud.pages.Login;
+import com.trycloud.pages.LoginPage;
 import com.trycloud.utilities.BrowserUtils;
 import com.trycloud.utilities.ConfigurationReader;
 import com.trycloud.utilities.Driver;
@@ -20,7 +20,7 @@ public class TestBase {
         Driver.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
         Driver.getDriver().manage().window().maximize();
-        Login login = new Login();
+        LoginPage login = new LoginPage();
         String username = ConfigurationReader.getProperty("user1");
         login.usernameBox.sendKeys(username);
         String password = ConfigurationReader.getProperty("password");

@@ -1,6 +1,6 @@
 package com.trycloud.tests;
 
-import com.trycloud.pages.Files;
+import com.trycloud.pages.FilesPage;
 import com.trycloud.tests.base.TestBase;
 import com.trycloud.utilities.Driver;
 import org.openqa.selenium.WebElement;
@@ -15,7 +15,7 @@ public class US2 extends TestBase {
     @Test
     public void US2_TC1() {
 
-        Files files = new Files();
+        FilesPage files = new FilesPage();
         List<WebElement> modules = new ArrayList<>(Arrays.asList());
         modules.addAll(Arrays.asList(
                 files.files,
@@ -29,14 +29,14 @@ public class US2 extends TestBase {
         ));
 
         List<String> titles = new ArrayList<>(Arrays.asList(
-                Files.expectedFilesTitle,
-                Files.expectedPhotosTitle,
-                Files.expectedActivityTitle,
-                Files.expectedTalkTitle,
-                Files.expectedMailTitle,
-                Files.expectedContactsTitle,
-                Files.expectedCirclesTitle,
-                Files.expectedDeckTitle
+                FilesPage.expectedFilesTitle,
+                FilesPage.expectedPhotosTitle,
+                FilesPage.expectedActivityTitle,
+                FilesPage.expectedTalkTitle,
+                FilesPage.expectedMailTitle,
+                FilesPage.expectedContactsTitle,
+                FilesPage.expectedCirclesTitle,
+                FilesPage.expectedDeckTitle
                 ));
 
         for(int i=0; i<modules.size(); i++){
@@ -46,7 +46,7 @@ public class US2 extends TestBase {
 
         files.calendar.click();
         String currentDate = files.calendarDatePickButton.getText();
-        Assert.assertTrue(Driver.getDriver().getTitle().equals(currentDate + Files.expectedCalendarTitle));
+        Assert.assertTrue(Driver.getDriver().getTitle().equals(currentDate +  FilesPage.expectedCalendarTitle));
 
 
 

@@ -14,16 +14,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Files {
+public class FilesPage {
 
-    public Files() {
+    public FilesPage() {
         PageFactory.initElements(Driver.getDriver(), this);
 
 
     }
 
     public void uploadfile(String path) {
-        Files files = new Files();
+        FilesPage files = new FilesPage();
         files.plusButton.click();
         files.addFileButton.click();
         BrowserUtils.sleep(1);
@@ -151,6 +151,10 @@ public class Files {
     @FindBy(xpath = "//span[@class='innernametext']")
     public List<WebElement> filesAndFoldersList;
 
+    @FindBy(xpath = "//*[@id='fileList']/tr")
+    public List<WebElement> filesAndFoldersList2;
+
+
     @FindBy(xpath = "//input[@id='view13-input-folder']")
     public WebElement newFolderName;
 
@@ -178,18 +182,25 @@ public class Files {
     public WebElement addToFavorite;
     @FindBy(xpath = "//a[.='Favorites']")
     public WebElement favorites;
-    @FindBy(xpath ="//span[@class='icon icon-starred']")
+    @FindBy(xpath ="//td[@class='filename']/a/span/span[1]")
     public List<WebElement> favoriteList;
-    @FindBy(xpath = "//tr[contains(@data-file,'XPath+Cheat+Sheet')]")
+    @FindBy(xpath = "(//tr[contains(@data-file,'XPath+Cheat+Sheet')])[2]")
     public WebElement favoriteFileName;
+    // change the name of this file according to you file
+    @FindBy(xpath = "(//tr[contains(@data-file,'XPath+Cheat+Sheet')])[2]/td/a/span[2]/a[2]")
+    public WebElement favoriteFileMore;
+
+
+    @FindBy(xpath = "//span[.='Remove from favorites']")
+    public WebElement removeFromFavorites;
 
     //public String actionIcon2Xpath = "(//span[@class='icon icon-more'])[2]";
     //public String actionIcon1Xpath = "(//a[@class='action action-menu permanent'])[1]";
     //public String addToFavoriteXpath = "//span[.='Add to favorites']";
-    public String removeFromFavoriteXpath = "//span[.='Remove from favorites']";
+   // public String removeFromFavoriteXpath = "//span[.='Remove from favorites']";
     //public String favoriteSubModuleXpath = "Favorites";
-    public String fileAddedToFavoriteXpath = "(//tbody)[3]/tr";
-    public String RemoveFromFavoriteXpath = "//span[.='Remove from favorites']";
+   // public String fileAddedToFavoriteXpath = "(//tbody)[3]/tr";
+  //  public String RemoveFromFavoriteXpath = "//span[.='Remove from favorites']";
 
     // US7
     // magnifierIcon
