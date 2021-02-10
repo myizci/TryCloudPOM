@@ -17,12 +17,12 @@ public class US3 extends TestBase {
 
     @Test
     public void US3_TC2() {
-        FilesPage files = new FilesPage();
+        FilesPage filesPage = new FilesPage();
 
-        files.files.click();
-        files.checkAllcheckbox.click();
+        filesPage.files.click();
+        filesPage.checkAllcheckbox.click();
 
-        for (WebElement each : files.checkedFilesAndFolders) {
+        for (WebElement each : filesPage.checkedFilesAndFolders) {
             Assert.assertTrue(each.isSelected());
         }
 
@@ -63,9 +63,9 @@ public class US3 extends TestBase {
         }
 
         files.favorites.click(); // moving to favorites page
-        BrowserUtils.sleep(1);
+        BrowserUtils.sleep(2);
         Driver.getDriver().navigate().refresh();
-        BrowserUtils.sleep(1);
+        BrowserUtils.sleep(2);
         Assert.assertTrue(files.favoriteFileName.isDisplayed()); //TC3 is asserted___________________
 
 
@@ -102,7 +102,7 @@ public class US3 extends TestBase {
     }
 
     @Test
-    public void US3_TC6() {
+    public void US3_TC6_TC7() {
 
         FilesPage filesPage = new FilesPage();
         filesPage.files.click();
@@ -117,11 +117,37 @@ public class US3 extends TestBase {
         boolean flag=false;
         for(WebElement each: filesPage.filesAndFoldersList){
             if(each.getText().equals(name)){
+                each.click();
                 flag=true;
             }
 
         }
 
         Assert.assertTrue(flag);
+
+
+
+        String path = "/Users/guestaccount/Desktop/XPath+Cheat+Sheet.pdf";
+
+        filesPage.uploadfile(path); // calling the upload method, it is for MAC
+        BrowserUtils.sleep(5);
+        Driver.getDriver().navigate().refresh(); // refreshing the page to make sure that it is visible
+
+        BrowserUtils.sleep(2);
+        boolean flag2 = false;
+        int index = 0; // verifying the new file  TC5_____________________
+        for (int i = 0; i < filesPage.filesAndFoldersList.size(); i++) {
+
+            if (filesPage.filesAndFoldersList.get(i).getText().contains("XPath+Cheat+Sheet")) {
+                index = i;
+                flag2 = true;
+                break;
+            }
+        }
+
+        Assert.assertTrue(flag);//TC5 is asserted________________________
     }
+
+
+
 }

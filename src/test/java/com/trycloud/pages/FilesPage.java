@@ -180,7 +180,7 @@ public class FilesPage {
     @FindBy(xpath ="//td[@class='filename']/a/span/span[1]")
     public List<WebElement> favoriteList;
 
-    @FindBy(xpath = "(//tr[contains(@data-file,'XPath+Cheat+Sheet')])[2]")
+    @FindBy(xpath = "(//tr[contains(@data-file,'XPath+Cheat+Sheet')])")
     public WebElement favoriteFileName;
     // change the name of this file according to you file
 
