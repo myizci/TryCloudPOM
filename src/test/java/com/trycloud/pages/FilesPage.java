@@ -168,14 +168,26 @@ public class FilesPage {
     @FindBy(xpath = "//a[@class='nav-icon-trashbin svg']")
     public WebElement trashBin;
 
-    @FindBy(xpath ="//td[@class='filename']")
-    public List<WebElement> trashbinList;
-
-    @FindBy(xpath = "(//span[@class='fileinfo'])[2]")
-    public WebElement bottomOfPage;
-
     @FindBy(xpath = "//span[.='Deleted']")
     public WebElement sortButton;
+
+    @FindBy(xpath = "//span[.='Details']")
+    public  WebElement details;
+
+    @FindBy(xpath = "//div[@data-placeholder='New comment …']")
+    public WebElement newComment;
+
+    @FindBy(xpath = "//a[@id='commentsTabView']")
+    public WebElement commentsTab;
+
+    @FindBy(xpath = "//input[@data-original-title='Post']")
+    public WebElement commentPost;
+
+    @FindBy(xpath = "//div[@class='message']")
+    public List<WebElement> commentList;
+
+    @FindBy(xpath = "//span[.='XPath+Cheat+Sheet']/../../span[2]/a[2]/span[1]")
+    public WebElement pdfFileMoreButton;
 
 
     public static final String expectedDashboardTitle = "Dashboard - Trycloud QA";

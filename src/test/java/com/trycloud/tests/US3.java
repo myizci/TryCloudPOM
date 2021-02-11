@@ -116,17 +116,16 @@ public class US3 extends TestBase {
         Driver.getDriver().navigate().refresh();
         BrowserUtils.sleep(1);
 
-        boolean flag=false;
-        for(WebElement each: filesPage.filesAndFoldersList){
-            if(each.getText().equals(name)){
+        boolean flag = false;
+        for (WebElement each : filesPage.filesAndFoldersList) {
+            if (each.getText().equals(name)) {
                 each.click();
-                flag=true;
+                flag = true;
             }
 
         }
 
         Assert.assertTrue(flag);
-
 
 
         String path = "/Users/guestaccount/Desktop/XPath+Cheat+Sheet.pdf";
@@ -165,14 +164,14 @@ public class US3 extends TestBase {
         BrowserUtils.sleep(1);
 
 
-        for(WebElement each: filesPage.filesAndFoldersList){
-            if(each.getText().equals(name)){
-                Driver.getDriver().findElement(By.xpath("//tr[@data-file='"+name+"']/td/label")).click();
+        for (WebElement each : filesPage.filesAndFoldersList) {
+            if (each.getText().equals(name)) {
+                Driver.getDriver().findElement(By.xpath("//tr[@data-file='" + name + "']/td/label")).click();
 
             }
 
         }
-boolean flag=false;
+        boolean flag = false;
         filesPage.selectedActionsList.click(); // clicks on icon ...Actions
         filesPage.deleteInActions.click();
         BrowserUtils.sleep(2);
@@ -184,15 +183,40 @@ boolean flag=false;
         BrowserUtils.sleep(1);
 
 
-
-             for(WebElement each: filesPage.filesAndFoldersList2){
+        for (WebElement each : filesPage.filesAndFoldersList2) {
 
             System.out.println(each.getText());
-            if(each.getText().contains(name)){
-                flag=true;
+            if (each.getText().contains(name)) {
+                flag = true;
                 break;
             }
         }
+        Assert.assertTrue(flag);
+    }
+
+    @Test
+    public void US3_TC9() {
+        FilesPage filesPage = new FilesPage();
+        filesPage.files.click();
+        Faker faker = new Faker();
+
+        String comment = faker.chuckNorris().fact();
+        // This test case assumes that there is a file named "XPath+Cheat+Sheet"
+
+        filesPage.pdfFileMoreButton.click();
+        filesPage.details.click();
+        filesPage.commentsTab.click();
+        filesPage.newComment.sendKeys(comment);
+        filesPage.commentPost.click();
+        boolean flag = false;
+        for (WebElement each : filesPage.commentList) {
+            if (each.getText().equals(comment)) {
+                flag = true;
+                break;
+
+            }
+        }
+
         Assert.assertTrue(flag);
     }
 }
