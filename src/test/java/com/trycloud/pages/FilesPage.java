@@ -94,6 +94,7 @@ public class FilesPage {
 
     }
 
+
     List<WebElement> modules = new ArrayList<>(Arrays.asList());
 
     @FindBy(xpath = "(//a[@href='/index.php/apps/files/'])[1]")
@@ -148,8 +149,34 @@ public class FilesPage {
     @FindBy(xpath = "//span[@class='innernametext']")
     public List<WebElement> filesAndFoldersList;
 
+    @FindBy(xpath = "//span[@class='innernametext']")
+    public List<WebElement> filesAndFoldersList2;
+
+
     @FindBy(xpath = "//input[contains(@id,'input-folder')]")
     public WebElement newFolderName;
+
+    @FindBy(id = "select_all_files")
+    public WebElement selectAllFiles;
+
+    @FindBy(xpath = "(//span[@id='selectedActionsList'])[1]")
+    public WebElement selectedActionsList;
+
+    @FindBy(xpath = "(//span[@id='selectedActionsList'])[1]/div/ul/li[4]/a/span")
+    public WebElement deleteInActions;
+
+    @FindBy(xpath = "//a[@class='nav-icon-trashbin svg']")
+    public WebElement trashBin;
+
+    @FindBy(xpath ="//td[@class='filename']")
+    public List<WebElement> trashbinList;
+
+    @FindBy(xpath = "(//span[@class='fileinfo'])[2]")
+    public WebElement bottomOfPage;
+
+    @FindBy(xpath = "//span[.='Deleted']")
+    public WebElement sortButton;
+
 
     public static final String expectedDashboardTitle = "Dashboard - Trycloud QA";
     public static final String expectedFilesTitle = "Files - Trycloud QA";
@@ -177,7 +204,7 @@ public class FilesPage {
     @FindBy(xpath = "//a[.='Favorites']")
     public WebElement favorites;
 
-    @FindBy(xpath ="//td[@class='filename']/a/span/span[1]")
+    @FindBy(xpath = "//td[@class='filename']/a/span/span[1]")
     public List<WebElement> favoriteList;
 
     @FindBy(xpath = "(//tr[contains(@data-file,'XPath+Cheat+Sheet')])")
@@ -189,7 +216,6 @@ public class FilesPage {
 
     @FindBy(xpath = "//span[.='Remove from favorites']")
     public WebElement removeFromFavorites;
-
 
 
     // US7

@@ -5,6 +5,7 @@ import com.trycloud.pages.FilesPage;
 import com.trycloud.tests.base.TestBase;
 import com.trycloud.utilities.BrowserUtils;
 import com.trycloud.utilities.Driver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -114,6 +115,7 @@ public class US3 extends TestBase {
         BrowserUtils.sleep(1);
         Driver.getDriver().navigate().refresh();
         BrowserUtils.sleep(1);
+
         boolean flag=false;
         for(WebElement each: filesPage.filesAndFoldersList){
             if(each.getText().equals(name)){
@@ -149,5 +151,48 @@ public class US3 extends TestBase {
     }
 
 
+    @Test
+    public void US3_TC8() {
+        FilesPage filesPage = new FilesPage();
+        filesPage.files.click();
+        filesPage.plusButton.click();
+        filesPage.newFolder.click();
+        Faker faker = new Faker();
+        String name = faker.name().firstName();
+        filesPage.newFolderName.sendKeys(name + Keys.ENTER);
+        BrowserUtils.sleep(1);
+        Driver.getDriver().navigate().refresh();
+        BrowserUtils.sleep(1);
 
+
+        for(WebElement each: filesPage.filesAndFoldersList){
+            if(each.getText().equals(name)){
+                Driver.getDriver().findElement(By.xpath("//tr[@data-file='"+name+"']/td/label")).click();
+
+            }
+
+        }
+boolean flag=false;
+        filesPage.selectedActionsList.click(); // clicks on icon ...Actions
+        filesPage.deleteInActions.click();
+        BrowserUtils.sleep(2);
+        filesPage.trashBin.click();
+        BrowserUtils.sleep(1);
+        filesPage.sortButton.click();// we have to click on sort to make all the elements visible
+        BrowserUtils.sleep(1);
+        filesPage.sortButton.click();
+        BrowserUtils.sleep(1);
+
+
+
+             for(WebElement each: filesPage.filesAndFoldersList2){
+
+            System.out.println(each.getText());
+            if(each.getText().contains(name)){
+                flag=true;
+                break;
+            }
+        }
+        Assert.assertTrue(flag);
+    }
 }
